@@ -42,13 +42,29 @@ IR=((B-A)/A) \times 100
 
 The mean is the average of the numbers.It is easy to calculate: add up all the numbers, then divide by how many numbers there are. In other words it is the sum divided by the count. Mathematically, the definion of the mean value can be explained by the following equaiton.
 
-
-
 $$
 \begin{equation}
 \bar{x}=\frac{x_{1}+x_{2}+\cdots+x_{n}}{n}=\frac{1}{n}\left(\sum_{i=1}^{n}{x_i}\right)
 \end{equation}
 $$ (my_other_label)
+
+In python, the calculation can be explained as follows:
+
+```{code-cell}
+numbers = [1,2,3,4,5]
+
+x = sum(numbers)/len(numbers)
+print("Mean is :", x)
+```
+Also, mean() function can be used to calculate mean/average of a given list of numbers shown as follows:
+
+```{code-cell}
+import statistics
+numbers = [1,2,3,4,5]
+
+x = statistics.mean(numbers)
+print("Mean is :", x)
+```
 
 
 ## Dataset description
