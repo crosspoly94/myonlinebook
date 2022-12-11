@@ -44,11 +44,11 @@ The mean is the average of the numbers.It is easy to calculate: add up all the n
 
 $$
 \begin{equation}
-\bar{x}=\frac{x_{1}+x_{2}+\cdots+x_{n}}{n}=\frac{1}{n}\left(\sum_{i=1}^{n}{x_i}\right)
+\bar{x}=\frac{x_{1}+x_{2}+\cdots+x_{n}}{n}
 \end{equation}
 $$ (my_other_label)
 
-In python, the calculation can be explained as follows:
+In python, the mean can be calculated by the following codes:
 
 ```{code-cell}
 numbers = [1,2,3,4,5]
