@@ -1,0 +1,933 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>The influence of yearly production on the gross income &#8212; Exploratory data analysis of the Disney datasets</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The distribution of the top 10 total gross income moives in history" href="notebook-3.html" />
+    <link rel="prev" title="The influence of movie genre on the gross income" href="notebook-1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/walt_disney_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Exploratory data analysis of the Disney datasets</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Exploratory data analysis of the Disney datasets
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown-introduction.html">
+   Walt Disney Pictures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="math-for-data.html">
+   Mathematical Processing of Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebook-1.html">
+   The influence of movie genre on the gross income
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   The influence of yearly production on the gross income
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebook-3.html">
+   The distribution of the top 10 total gross income moives in history
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown-discussion.html">
+   Discussions
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/notebook-2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebook-2.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/notebook-2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>The influence of yearly production on the gross income</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="the-influence-of-yearly-production-on-the-gross-income">
+<h1>The influence of yearly production on the gross income<a class="headerlink" href="#the-influence-of-yearly-production-on-the-gross-income" title="Permalink to this headline">#</a></h1>
+<p>As a second visualization, let’s take a look at the total gross income at the different release year. To do this, only year of release date will be considered.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lets import all the required libraries needed for this analysis</span>
+<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># import all the required files</span>
+<span class="n">total_gross</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/disney_movies_total_gross.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># using the code replace to erase the &#39;$&#39;and then change the datatype to int.</span>
+<span class="n">total_gross</span><span class="p">[</span><span class="s1">&#39;inflation_adjusted_gross&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">total_gross</span><span class="p">[</span><span class="s1">&#39;inflation_adjusted_gross&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;\$&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">},</span><span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">total_gross</span><span class="p">[</span><span class="s1">&#39;inflation_adjusted_gross&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">total_gross</span><span class="p">[</span><span class="s1">&#39;inflation_adjusted_gross&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;\,&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">},</span><span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int64&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># split the release date and only year variable will be considered</span>
+<span class="n">dates</span> <span class="o">=</span> <span class="p">(</span><span class="n">total_gross</span><span class="p">[</span><span class="s1">&#39;release_date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s1">&#39;Month_day&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="s1">&#39;Year&#39;</span><span class="p">}))</span>
+<span class="n">total_gross_year</span> <span class="o">=</span><span class="p">(</span><span class="n">total_gross</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">dates</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)))</span>
+<span class="n">total_gross_year</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>movie_title</th>
+      <th>release_date</th>
+      <th>genre</th>
+      <th>MPAA_rating</th>
+      <th>total_gross</th>
+      <th>inflation_adjusted_gross</th>
+      <th>year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Snow White and the Seven Dwarfs</td>
+      <td>Dec 21, 1937</td>
+      <td>Musical</td>
+      <td>G</td>
+      <td>$184,925,485</td>
+      <td>5228953251</td>
+      <td>1937</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Pinocchio</td>
+      <td>Feb 9, 1940</td>
+      <td>Adventure</td>
+      <td>G</td>
+      <td>$84,300,000</td>
+      <td>2188229052</td>
+      <td>1940</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Fantasia</td>
+      <td>Nov 13, 1940</td>
+      <td>Musical</td>
+      <td>G</td>
+      <td>$83,320,000</td>
+      <td>2187090808</td>
+      <td>1940</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Song of the South</td>
+      <td>Nov 12, 1946</td>
+      <td>Adventure</td>
+      <td>G</td>
+      <td>$65,000,000</td>
+      <td>1078510579</td>
+      <td>1946</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Cinderella</td>
+      <td>Feb 15, 1950</td>
+      <td>Drama</td>
+      <td>G</td>
+      <td>$85,000,000</td>
+      <td>920608730</td>
+      <td>1950</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>574</th>
+      <td>The Light Between Oceans</td>
+      <td>Sep 2, 2016</td>
+      <td>Drama</td>
+      <td>PG-13</td>
+      <td>$12,545,979</td>
+      <td>12545979</td>
+      <td>2016</td>
+    </tr>
+    <tr>
+      <th>575</th>
+      <td>Queen of Katwe</td>
+      <td>Sep 23, 2016</td>
+      <td>Drama</td>
+      <td>PG</td>
+      <td>$8,874,389</td>
+      <td>8874389</td>
+      <td>2016</td>
+    </tr>
+    <tr>
+      <th>576</th>
+      <td>Doctor Strange</td>
+      <td>Nov 4, 2016</td>
+      <td>Adventure</td>
+      <td>PG-13</td>
+      <td>$232,532,923</td>
+      <td>232532923</td>
+      <td>2016</td>
+    </tr>
+    <tr>
+      <th>577</th>
+      <td>Moana</td>
+      <td>Nov 23, 2016</td>
+      <td>Adventure</td>
+      <td>PG</td>
+      <td>$246,082,029</td>
+      <td>246082029</td>
+      <td>2016</td>
+    </tr>
+    <tr>
+      <th>578</th>
+      <td>Rogue One: A Star Wars Story</td>
+      <td>Dec 16, 2016</td>
+      <td>Adventure</td>
+      <td>PG-13</td>
+      <td>$529,483,936</td>
+      <td>529483936</td>
+      <td>2016</td>
+    </tr>
+  </tbody>
+</table>
+<p>579 rows × 7 columns</p>
+</div></div></div>
+</div>
+<p>To faciliate the analysis, before we can do anything let’s categorize the years into several groups into a column named year_group. Based on literature searching, there are 7 eras of Disney filmmaking. Accordingly, we will Use the following conditions for each era showing the different stages of development of Disney filmmaking</p>
+<p>*from 1937 to 1942 → “The Golden Age”
+*from 1943 to 1949 → “The Wartime Era”
+*from 1950 to 1959 → “The Silver Age”
+*from 1970 to 1988 → “The Bronze Age”
+*from 1989 to 1999 → “The Disney Renaissance”
+*from 2000 to 2009 → “Post Renaissance Era”
+*from 2010 to present → “The Revival Era”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate plotting data</span>
+<span class="n">total_gross_year</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">total_gross_year</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">1942</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">total_gross_year</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">1937</span><span class="p">),</span><span class="s1">&#39;year_group&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;The Golden Age&#39;</span>
+<span class="n">total_gross_year</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">total_gross_year</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">1949</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">total_gross_year</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">1943</span><span class="p">),</span><span class="s1">&#39;year_group&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;The Wartime Era&#39;</span>
+<span class="n">total_gross_year</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">total_gross_year</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">1959</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">total_gross_year</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">1950</span><span class="p">),</span><span class="s1">&#39;year_group&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;The Silver Age&#39;</span>
+<span class="n">total_gross_year</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">total_gross_year</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">1988</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">total_gross_year</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">1970</span><span class="p">),</span><span class="s1">&#39;year_group&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;The Bronze Age&#39;</span>
+<span class="n">total_gross_year</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">total_gross_year</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">1999</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">total_gross_year</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">1989</span><span class="p">),</span><span class="s1">&#39;year_group&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;The Disney Renaissance&#39;</span>
+<span class="n">total_gross_year</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">total_gross_year</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">2009</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">total_gross_year</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">2000</span><span class="p">),</span><span class="s1">&#39;year_group&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;Post Renaissance Era&#39;</span>
+<span class="n">total_gross_year</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">total_gross_year</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">2010</span><span class="p">),</span><span class="s1">&#39;year_group&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;The Revival Era&#39;</span>
+<span class="n">total_gross_stage</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">total_gross_year</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year_group&#39;</span><span class="p">)[</span><span class="s1">&#39;inflation_adjusted_gross&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">total_gross_stage</span> <span class="o">=</span> <span class="n">total_gross_stage</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">total_gross_stage</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year_group</th>
+      <th>inflation_adjusted_gross</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Disney Renaissance</td>
+      <td>18841155750</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Post Renaissance Era</td>
+      <td>15791503349</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>The Revival Era</td>
+      <td>13150493912</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The Golden Age</td>
+      <td>9604273111</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>The Bronze Age</td>
+      <td>4601649994</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>The Silver Age</td>
+      <td>2706430071</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>The Wartime Era</td>
+      <td>1078510579</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now that we have it in the proper format, we can generate a bar plot to visualize it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use altair to generate a bar plot</span>
+<span class="n">total_gross_stage_plot</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">total_gross_stage</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s2">&quot;year_group:O&quot;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="s1">&#39;-y&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Different development stage&quot;</span><span class="p">),</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s2">&quot;inflation_adjusted_gross:Q&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Inflation Adjusted Total Gross&quot;</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;The total gross income from movies in different stage of Disney filmmaking&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">total_gross_stage_plot</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<div id="altair-viz-8c664b1f0f014cd49173d512a23108ec"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-8c664b1f0f014cd49173d512a23108ec") {
+      outputDiv = document.getElementById("altair-viz-8c664b1f0f014cd49173d512a23108ec");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.17.0?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "4.17.0"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-7c0b674e8caae1a53b2d4eb21fbbde3a"}, "mark": "bar", "encoding": {"x": {"field": "year_group", "sort": "-y", "title": "Different development stage", "type": "ordinal"}, "y": {"field": "inflation_adjusted_gross", "title": "Inflation Adjusted Total Gross", "type": "quantitative"}}, "height": 300, "title": "The total gross income from movies in different stage of Disney filmmaking", "width": 500, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-7c0b674e8caae1a53b2d4eb21fbbde3a": [{"year_group": "The Disney Renaissance", "inflation_adjusted_gross": 18841155750}, {"year_group": "Post Renaissance Era", "inflation_adjusted_gross": 15791503349}, {"year_group": "The Revival Era", "inflation_adjusted_gross": 13150493912}, {"year_group": "The Golden Age", "inflation_adjusted_gross": 9604273111}, {"year_group": "The Bronze Age", "inflation_adjusted_gross": 4601649994}, {"year_group": "The Silver Age", "inflation_adjusted_gross": 2706430071}, {"year_group": "The Wartime Era", "inflation_adjusted_gross": 1078510579}]}}, {"mode": "vega-lite"});
+</script></div></div>
+</div>
+<p>It shows that the Disney Renaissance (from 1989 to 1999) gave the highest amount of gross income followed by Post Renaissance Era (from 2000 to 2009) and The Revival Era (from 2010 to now). This tells us that from 1989 till now, there exists a decreasing trend in gross income by film making. On the other hand, there exists another dreasing trend from The Golden Age (from 1937 to 1942) to The Wartime Era (from 1943 to 1949) which implys the significant influence of war. Two questions arise here: 1) what is the reason for the abnormal order of The Bronze Age and The Silver Age, and 2) why call the time period of 1937-1942 The Golden Age which didnot create the highest amount of gross income.</p>
+<p>Next, let us take a look at the production in these different periods.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># count by the movie title</span>
+<span class="n">movie_number_period</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">total_gross_year</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year_group&#39;</span><span class="p">)[</span><span class="s1">&#39;movie_title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">))</span>
+<span class="n">movie_number_period</span> <span class="o">=</span> <span class="n">movie_number_period</span><span class="p">[</span><span class="s1">&#39;movie_title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">movie_number_period</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year_group
+The Disney Renaissance    247
+Post Renaissance Era      172
+The Revival Era            86
+The Bronze Age             59
+The Silver Age              4
+The Golden Age              3
+The Wartime Era             1
+Name: movie_title, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>From this table, it can be seen there is a linear relationship between the production and total gross income except for The Golden Age. It can be concluded that the reason for the high gross income for a period of time is mainly due to the high production. However, the porpularity of movie in a specific period will contribute to another reason as The Golden Age shows. To clarify this, the average gross income at different period of time will be given as follows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate the average gross income data</span>
+<span class="n">total_gross_year_average</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">total_gross_year</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year_group&#39;</span><span class="p">)[</span><span class="s1">&#39;inflation_adjusted_gross&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">total_gross_year_average</span> <span class="o">=</span> <span class="n">total_gross_year_average</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">total_gross_year_average</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year_group</th>
+      <th>inflation_adjusted_gross</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Golden Age</td>
+      <td>3.201424e+09</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>The Wartime Era</td>
+      <td>1.078511e+09</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>The Silver Age</td>
+      <td>6.766075e+08</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The Revival Era</td>
+      <td>1.529127e+08</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Post Renaissance Era</td>
+      <td>9.181107e+07</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>The Bronze Age</td>
+      <td>7.799407e+07</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>The Disney Renaissance</td>
+      <td>7.627998e+07</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use altair to generate a bar plot</span>
+<span class="n">total_gross_year_average_plot</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">total_gross_year_average</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s2">&quot;year_group:O&quot;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="s1">&#39;-y&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Different development stage&quot;</span><span class="p">),</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s2">&quot;inflation_adjusted_gross:Q&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Averaged inflation Adjusted Total Gross&quot;</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;The average total gross income from movies in different stage of Disney filmmaking&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">total_gross_year_average_plot</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<div id="altair-viz-fd55fccd1f6a41aa8bc0cbbb1cd6494b"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-fd55fccd1f6a41aa8bc0cbbb1cd6494b") {
+      outputDiv = document.getElementById("altair-viz-fd55fccd1f6a41aa8bc0cbbb1cd6494b");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.17.0?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "4.17.0"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-b81e04bbf1f49dc2e930c734309304fe"}, "mark": "bar", "encoding": {"x": {"field": "year_group", "sort": "-y", "title": "Different development stage", "type": "ordinal"}, "y": {"field": "inflation_adjusted_gross", "title": "Averaged inflation Adjusted Total Gross", "type": "quantitative"}}, "height": 300, "title": "The average total gross income from movies in different stage of Disney filmmaking", "width": 500, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-b81e04bbf1f49dc2e930c734309304fe": [{"year_group": "The Golden Age", "inflation_adjusted_gross": 3201424370.3333335}, {"year_group": "The Wartime Era", "inflation_adjusted_gross": 1078510579.0}, {"year_group": "The Silver Age", "inflation_adjusted_gross": 676607517.75}, {"year_group": "The Revival Era", "inflation_adjusted_gross": 152912719.90697673}, {"year_group": "Post Renaissance Era", "inflation_adjusted_gross": 91811065.98255815}, {"year_group": "The Bronze Age", "inflation_adjusted_gross": 77994067.69491525}, {"year_group": "The Disney Renaissance", "inflation_adjusted_gross": 76279982.79352227}]}}, {"mode": "vega-lite"});
+</script></div></div>
+</div>
+<p>It shows that in the Golden Age (from 1937 to 1942) Disney movies created enormous amount of average gross income whereas there was an dramtic drop in The Wartime Era followed by The Silver Age. The least amount of average gross income is associated with both The Bornze Age and The Disney Renaissance which implys the lowest ebb of development of Disney filmmaking. After that, the average grosss income shows an increasing trend until now but is still just about the one fourth of that in The Silver Age. The average gross income can partially reflect the popularity of Disney films in different stages of its development.  It can be seen that films made in The Golden Age are the most popular ones in the Disney filmmaking history.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="notebook-1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">The influence of movie genre on the gross income</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="notebook-3.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">The distribution of the top 10 total gross income moives in history</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Xing Geng<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

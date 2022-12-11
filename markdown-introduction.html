@@ -1,0 +1,483 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Walt Disney Pictures &#8212; Exploratory data analysis of the Disney datasets</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Mathematical Processing of Data" href="math-for-data.html" />
+    <link rel="prev" title="Exploratory data analysis of the Disney datasets" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/walt_disney_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Exploratory data analysis of the Disney datasets</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Exploratory data analysis of the Disney datasets
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Walt Disney Pictures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="math-for-data.html">
+   Mathematical Processing of Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebook-1.html">
+   The influence of movie genre on the gross income
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebook-2.html">
+   The influence of yearly production on the gross income
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebook-3.html">
+   The distribution of the top 10 total gross income moives in history
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown-discussion.html">
+   Discussions
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fmarkdown-introduction.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/markdown-introduction.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#history">
+   History
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#highest-grossing-films">
+   Highest-grossing films
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-future-development-strategy">
+   The future development strategy
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Walt Disney Pictures</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#history">
+   History
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#highest-grossing-films">
+   Highest-grossing films
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-future-development-strategy">
+   The future development strategy
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="walt-disney-pictures">
+<h1>Walt Disney Pictures<a class="headerlink" href="#walt-disney-pictures" title="Permalink to this headline">#</a></h1>
+<p>Walt Disney Pictures is an American <a class="reference external" href="https://en.wikipedia.org/wiki/Film_studio">film production company</a> and subsidiary of Walt Disney Studios, which is owned by <a class="reference external" href="https://en.wikipedia.org/wiki/The_Walt_Disney_Company">The Walt Disney Company</a>. All films produced by Walt Disney Studios were released under the Walt Disney Pictures logo shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">walt_disney_logo</span></code>, that is widely recognized.</p>
+<figure class="align-default" id="blackhole">
+<a class="reference internal image-reference" href="new-book/walt_disney_logo.png"><img alt="new-book/walt_disney_logo.png" src="new-book/walt_disney_logo.png" style="height: 150px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Walt Disney Pictures Logo.</span><a class="headerlink" href="#blackhole" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="history">
+<h2>History<a class="headerlink" href="#history" title="Permalink to this headline">#</a></h2>
+<p>Disney filmmaking has evolved immensely over the past 100 years and has experienced the <a class="reference external" href="https://www.dizavenue.com/2015/08/the-7-eras-of-disney-filmmaking.html">7 eras of Disney filmmaking</a>.</p>
+<ul class="simple">
+<li><p><strong>The Golden Age - 1937-1942</strong> The period beginning with Snow White and the Seven Dwarfs and ending with Bambi is often referred to as the “Golden Age” of Disney filmmaking.</p></li>
+<li><p><strong>The Wartime Era - 1943-1949</strong> With the arrival of World War II, Disney Studios faced lower budgets and smaller teams of animators available for their films. This era, also known as the “Package Era”, features six films that are comprised of multiple short films within each. They are considered some of the more obscure films in Disney history, and were not wildly popular.</p></li>
+<li><p><strong>The Silver Age -1950-1959</strong> Also known as the “Restoration Age”, the Silver Age marks Disney’s return to making big-budget full-length films. This era is marked by its beautiful animation with ornate backgrounds with soft colors.</p></li>
+<li><p><strong>The Bronze Age - 1970-1988</strong> The death of Walt Disney spiraled the Walt Disney Studios into the Bronze Age. Also known as the “Modern Era” this era was a time of decline for Disney.</p></li>
+<li><p><strong>The Disney Renaissance - 1989-1999</strong> Perhaps the most widely agreed upon era in Disney filmmaking, the Disney Renaissance is considered the pinnacle of Disney films. It saw profound success in the box office, with its movies returning to the musical fairy-tale storytelling that Disney was known for.</p></li>
+<li><p><strong>Post Renaissance Era - 2000-2009</strong> The “Post Renaissance Era” is marked by no common theme as seen in previous Disney filmmaking eras. What really defines this period of time is Disney Studios trying to find a new method of storytelling, much like that of Pixar’s.</p></li>
+<li><p><strong>The Revival Era - 2010-Present</strong> The present era of Disney filmmaking that we are in, the “Revival Era” is also being called the “Second Disney Renaissance”.</p></li>
+</ul>
+<p>In this analysis, the movie production in different eras will be analyzed in relation to the gross income in order to identify the factors affecting the moive incomes.</p>
+</section>
+<section id="highest-grossing-films">
+<h2>Highest-grossing films<a class="headerlink" href="#highest-grossing-films" title="Permalink to this headline">#</a></h2>
+<p>Walt Disney Pictures has produced five live-action films that have grossed over $1 billion at the worldwide box office: Pirates of the Caribbean: Dead Man’s Chest (2006), Alice in Wonderland (2010), Pirates of the Caribbean: On Stranger Tides (2011), Beauty and the Beast (2017) and Aladdin (2019); and has released eight animated films that have reached that milestone: Toy Story 3 (2010), Frozen (2013), Zootopia, Finding Dory (both 2016), Incredibles 2 (2018), The Lion King, Toy Story 4, and Frozen II (three in 2019).</p>
+<p>The gross income of the movies will be analyzed in our work. However, for a truthful comparision, the gross income will be adjusted for inflation according to the equation in the <span class="xref myst">math section</span>.</p>
+</section>
+<section id="the-future-development-strategy">
+<h2>The future development strategy<a class="headerlink" href="#the-future-development-strategy" title="Permalink to this headline">#</a></h2>
+<p>In this analysis, I will be investigating a question associated with the collection of Disney moives datasets. I am interested in finding out the development history and future trend of the Disney filmmaking. This work will be carried out by examination the total gross income of the movies in different of development stage of Disney Movies and some factors which may affect the gross income. These factors include genre, release year, and production of each year. This is interesting because, as you may know, the disney moives are deeply loved by people and contribute significantly to the revenue of Disney. Based on this information, suggestions and strategies for the future development of Disney filmmaking will be proposed.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Exploratory data analysis of the Disney datasets</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="math-for-data.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Mathematical Processing of Data</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Xing Geng<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

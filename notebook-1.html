@@ -1,0 +1,749 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>The influence of movie genre on the gross income &#8212; Exploratory data analysis of the Disney datasets</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The influence of yearly production on the gross income" href="notebook-2.html" />
+    <link rel="prev" title="Mathematical Processing of Data" href="math-for-data.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/walt_disney_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Exploratory data analysis of the Disney datasets</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Exploratory data analysis of the Disney datasets
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown-introduction.html">
+   Walt Disney Pictures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="math-for-data.html">
+   Mathematical Processing of Data
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   The influence of movie genre on the gross income
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebook-2.html">
+   The influence of yearly production on the gross income
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebook-3.html">
+   The distribution of the top 10 total gross income moives in history
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown-discussion.html">
+   Discussions
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/notebook-1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebook-1.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/notebook-1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>The influence of movie genre on the gross income</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="the-influence-of-movie-genre-on-the-gross-income">
+<h1>The influence of movie genre on the gross income<a class="headerlink" href="#the-influence-of-movie-genre-on-the-gross-income" title="Permalink to this headline">#</a></h1>
+<p>First, I am interested in computing the total income of different movies as a result of their genres. Therefore, I will need to use table that contain information on gross income of various movies which is the disney_movie_total_gross table.</p>
+<p>Before moving further, let us import the table and get the basic information about it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lets import all the required libraries needed for this analysis</span>
+<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="c1"># import all the required files</span>
+<span class="n">total_gross</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/disney_movies_total_gross.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see what the table look like.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_gross</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>movie_title</th>
+      <th>release_date</th>
+      <th>genre</th>
+      <th>MPAA_rating</th>
+      <th>total_gross</th>
+      <th>inflation_adjusted_gross</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Snow White and the Seven Dwarfs</td>
+      <td>Dec 21, 1937</td>
+      <td>Musical</td>
+      <td>G</td>
+      <td>$184,925,485</td>
+      <td>$5,228,953,251</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Pinocchio</td>
+      <td>Feb 9, 1940</td>
+      <td>Adventure</td>
+      <td>G</td>
+      <td>$84,300,000</td>
+      <td>$2,188,229,052</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Fantasia</td>
+      <td>Nov 13, 1940</td>
+      <td>Musical</td>
+      <td>G</td>
+      <td>$83,320,000</td>
+      <td>$2,187,090,808</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Song of the South</td>
+      <td>Nov 12, 1946</td>
+      <td>Adventure</td>
+      <td>G</td>
+      <td>$65,000,000</td>
+      <td>$1,078,510,579</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Cinderella</td>
+      <td>Feb 15, 1950</td>
+      <td>Drama</td>
+      <td>G</td>
+      <td>$85,000,000</td>
+      <td>$920,608,730</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s get some other information about the table.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_gross</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 579 entries, 0 to 578
+Data columns (total 6 columns):
+ #   Column                    Non-Null Count  Dtype 
+---  ------                    --------------  ----- 
+ 0   movie_title               579 non-null    object
+ 1   release_date              579 non-null    object
+ 2   genre                     562 non-null    object
+ 3   MPAA_rating               523 non-null    object
+ 4   total_gross               579 non-null    object
+ 5   inflation_adjusted_gross  579 non-null    object
+dtypes: object(6)
+memory usage: 27.3+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<p>The gross income table has  579  rows and  6  columns. Every total_gross has a movie_title, a release_date, the genre, the MPAA_rating it was related to and the inflation_adjusted_gross it was converted to for a better comparison.</p>
+<p>As a first visualization, let’s look at the influence of movie genre on the total gross. To do this, I will use the total_gross table and select two columns of genre and inflation_adjusted_gross. I will first erase the ‘$’ in the inflation_adjusted_gross and change the data type from object to int for computing. Then I will group by genre and then compute the average total gross for each genre.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># using the code replace to erase the &#39;$&#39;and then change the datatype to int.</span>
+<span class="n">total_gross</span><span class="p">[</span><span class="s1">&#39;inflation_adjusted_gross&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">total_gross</span><span class="p">[</span><span class="s1">&#39;inflation_adjusted_gross&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;\$&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">},</span><span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">total_gross</span><span class="p">[</span><span class="s1">&#39;inflation_adjusted_gross&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">total_gross</span><span class="p">[</span><span class="s1">&#39;inflation_adjusted_gross&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;\,&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">},</span><span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int64&#39;</span><span class="p">)</span>
+<span class="n">total_gross</span><span class="p">[</span><span class="s1">&#39;inflation_adjusted_gross&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      5228953251
+1      2188229052
+2      2187090808
+3      1078510579
+4       920608730
+          ...    
+574      12545979
+575       8874389
+576     232532923
+577     246082029
+578     529483936
+Name: inflation_adjusted_gross, Length: 579, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># group by genre and compute the average inflation_adjusted_gross of genres.</span>
+<span class="n">total_gross_genre_average</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">total_gross</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;genre&#39;</span><span class="p">)[</span><span class="s1">&#39;inflation_adjusted_gross&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+<span class="c1"># Reset the index so we can plot using altair</span>
+<span class="n">total_gross_genre_average</span> <span class="o">=</span> <span class="n">total_gross_genre_average</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">total_gross_genre_average</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>genre</th>
+      <th>inflation_adjusted_gross</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Musical</td>
+      <td>6.035979e+08</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Adventure</td>
+      <td>1.903974e+08</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Action</td>
+      <td>1.374734e+08</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Thriller/Suspense</td>
+      <td>8.965379e+07</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Comedy</td>
+      <td>8.466773e+07</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Romantic Comedy</td>
+      <td>7.777708e+07</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Western</td>
+      <td>7.381571e+07</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Drama</td>
+      <td>7.189302e+07</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Concert/Performance</td>
+      <td>5.741084e+07</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Black Comedy</td>
+      <td>5.224349e+07</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Horror</td>
+      <td>2.341385e+07</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Documentary</td>
+      <td>1.271803e+07</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now that we have it in the proper format, we can generate a bar plot to visualize it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use altair to generate a bar plot</span>
+<span class="n">total_gross_genre_average_plot</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">total_gross_genre_average</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s2">&quot;genre:O&quot;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="s1">&#39;-y&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Movie Genre&quot;</span><span class="p">),</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s2">&quot;inflation_adjusted_gross:Q&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Inflation Adjusted Total Gross&quot;</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;The averaged total gross income of different movie genres&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">total_gross_genre_average_plot</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<div id="altair-viz-86a82152d5494ce986d06c5961d92611"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-86a82152d5494ce986d06c5961d92611") {
+      outputDiv = document.getElementById("altair-viz-86a82152d5494ce986d06c5961d92611");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.17.0?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "4.17.0"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-18dda85fad336e17ac8911b580eaa152"}, "mark": "bar", "encoding": {"x": {"field": "genre", "sort": "-y", "title": "Movie Genre", "type": "ordinal"}, "y": {"field": "inflation_adjusted_gross", "title": "Inflation Adjusted Total Gross", "type": "quantitative"}}, "height": 300, "title": "The averaged total gross income of different movie genres", "width": 500, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-18dda85fad336e17ac8911b580eaa152": [{"genre": "Musical", "inflation_adjusted_gross": 603597861.0}, {"genre": "Adventure", "inflation_adjusted_gross": 190397412.0775194}, {"genre": "Action", "inflation_adjusted_gross": 137473419.65}, {"genre": "Thriller/Suspense", "inflation_adjusted_gross": 89653789.75}, {"genre": "Comedy", "inflation_adjusted_gross": 84667730.29120879}, {"genre": "Romantic Comedy", "inflation_adjusted_gross": 77777084.04347827}, {"genre": "Western", "inflation_adjusted_gross": 73815706.57142857}, {"genre": "Drama", "inflation_adjusted_gross": 71893021.78947368}, {"genre": "Concert/Performance", "inflation_adjusted_gross": 57410839.0}, {"genre": "Black Comedy", "inflation_adjusted_gross": 52243491.666666664}, {"genre": "Horror", "inflation_adjusted_gross": 23413848.666666668}, {"genre": "Documentary", "inflation_adjusted_gross": 12718026.125}]}}, {"mode": "vega-lite"});
+</script></div></div>
+</div>
+<p>From the above plot, there exists a decreasing trend in total gross income with the variation of movie genre. At first sight, it seems movie genre has a significant influence on the total gross income. As can be seen from the plot, there exists a drastic decrease at the beginning of the trend curve. The gross income of Musical genre is abnoramlly high which is about three times of that of Advanture, which is the second highest one. The least amount of gross is associated with Documentary genre. To validate this assertion, however, further analysis work is needed.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="math-for-data.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Mathematical Processing of Data</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="notebook-2.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">The influence of yearly production on the gross income</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Xing Geng<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
