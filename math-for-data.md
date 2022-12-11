@@ -12,24 +12,27 @@ kernelspec:
   language: python
   name: python3
 ---
+
 # Mathematical Processing of Data 
 
-Two basic mathematics will be used in this analysis and here gives a brief review of them.
+Two basic mathematical concepts will be used in this analysis and here gives a brief review of them.
 
 ## Inflation Adjusted Gross Income(IAGI)
 
 AGI can be calculated by this equation:
 
-```
-IAGI=GI(1+IR)
-IR=((B-A)/A)\times100
 
-```
+IAGI=GI$\times$(1+IR)
+
+IR=((B-A)/A)$\times$100
+
+
 where,
 - A=Starting cost
 - B=Ending cost
 - GI=Gross income
 - IAGI=Inflation adjusted gross income
+- IR=Inflation rate
          
 ## Mean value
 
