@@ -21,11 +21,13 @@ Two basic mathematical concepts will be used in this analysis and here gives a b
 
 AGI can be calculated by this equation:
 
+```{math}
+:label: eq_label
+IAGI=GI \times (1+IR)
 
-IAGI=GI$\times$(1+IR)
+IR=((B-A)/A) \times 100
 
-IR=((B-A)/A)$\times$100
-
+```
 
 where,
 - A=Starting cost
@@ -38,11 +40,14 @@ where,
 
 The mean is the average of the numbers.It is easy to calculate: add up all the numbers, then divide by how many numbers there are. In other words it is the sum divided by the count. Mathematically, the definion of the mean value can be explained by the following equaiton.
 
+
+
 $$
 \begin{equation}
 \bar{x}=\frac{x_{1}+x_{2}+\cdots+x_{n}}{n}=\frac{1}{n}\left(\sum_{i=1}^{n}{x_i}\right)
 \end{equation}
-$$
+$$ (my_other_label)
+
 
 ## Dataset description
 
