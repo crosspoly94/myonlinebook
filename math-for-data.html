@@ -430,13 +430,14 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="mathematical-processing-of-data">
 <h1>Mathematical Processing of Data<a class="headerlink" href="#mathematical-processing-of-data" title="Permalink to this headline">#</a></h1>
-<p>Two basic mathematics will be used in this analysis and here gives a brief review of them.</p>
+<p>Two basic mathematical concepts will be used in this analysis and here gives a brief review of them.</p>
 <section id="inflation-adjusted-gross-income-iagi">
 <h2>Inflation Adjusted Gross Income(IAGI)<a class="headerlink" href="#inflation-adjusted-gross-income-iagi" title="Permalink to this headline">#</a></h2>
 <p>AGI can be calculated by this equation:</p>
-<p>IAGI=GI<span class="math notranslate nohighlight">\(\times\)</span>(1+IR)</p>
-<p>IR=((B-A)/A)<span class="math notranslate nohighlight">\(\times\)</span>100</p>
-<p>where,</p>
+<div class="math notranslate nohighlight" id="equation-eq-label">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-label" title="Permalink to this equation">#</a></span>\[ \begin{align}\begin{aligned}IAGI=GI \times (1+IR)\\IR=((B-A)/A) \times 100\end{aligned}\end{align} \]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <ul class="simple">
 <li><p>A=Starting cost</p></li>
 <li><p>B=Ending cost</p></li>
@@ -444,22 +445,62 @@ title="Print to PDF"
 <li><p>IAGI=Inflation adjusted gross income</p></li>
 <li><p>IR=Inflation rate</p></li>
 </ul>
+</div>
 </section>
 <section id="mean-value">
 <h2>Mean value<a class="headerlink" href="#mean-value" title="Permalink to this headline">#</a></h2>
 <p>The mean is the average of the <a class="reference external" href="http://numbers.It">numbers.It</a> is easy to calculate: add up all the numbers, then divide by how many numbers there are. In other words it is the sum divided by the count. Mathematically, the definion of the mean value can be explained by the following equaiton.</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-my-other-label">
+<span class="eqno">(2)<a class="headerlink" href="#equation-my-other-label" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
-\bar{x}=\frac{x_{1}+x_{2}+\cdots+x_{n}}{n}=\frac{1}{n}\left(\sum_{i=1}^{n}{x_i}\right)
+\bar{x}=\frac{x_{1}+x_{2}+\cdots+x_{n}}{n}
 \end{equation}
 \]</div>
+<p>In python, the mean can be calculated by the following codes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean is :&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean is : 3.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Also, mean() function can be used to calculate mean/average of a given list of numbers shown as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statistics</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">statistics</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean is :&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean is : 3
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="dataset-description">
 <h2>Dataset description<a class="headerlink" href="#dataset-description" title="Permalink to this headline">#</a></h2>
 <p>The below descripitions were taken directly from the website where the datasets were obtained.</p>
-<p>“The Walt Disney Studios is an American film and entertainment studio, and is the Studios Content segment of the Walt Disney Company. Based mainly at the namesake studio lot in Burbank, California, the studio is best known for its multifaceted film divisions. Founded in 1923, it is the fourth-oldest and one of the “Big Five” major film studios”<span id="id1">[]</span>.</p>
-<p>This database contains information on the films regarding their genre, actors, directors, and yearly gross income which can be found in different datasets. The Disney dataset is composed of 5 tables, disney_movie_total_gross.csv, disney_revenue_1991-2016.csv, disney_characters.csv, disney_directors.csv, disney_voice_actors.csv. Each table is stored in a .csv file and contains different information about disney movies including genre, actors, directors, yearly gross income, and so forth. I will be using the disney_movie_total_gross table formally described below:</p>
+<aside class="margin sidebar">
+<p class="sidebar-title">Did you know?</p>
+<p>The highest grossing income Disney movie in history</p>
+</aside>
+<p>This database contains information on the films regarding their genre, actors, directors, and yearly gross income which can be found in different datasets. The Disney dataset is composed of 5 tables, disney_movie_total_gross.csv, disney_revenue_1991-2016.csv, disney_characters.csv, disney_directors.csv, disney_voice_actors.csv. Each table is stored in a .csv file and contains different information about disney movies including genre, actors, directors, yearly gross income, and so forth.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I will be using the disney_movie_total_gross table formally described below:</p>
 <ul class="simple">
 <li><p><strong>disney_movie_total_gross.csv</strong></p>
 <ul>
@@ -467,6 +508,7 @@ title="Print to PDF"
 </ul>
 </li>
 </ul>
+</div>
 </section>
 </section>
 

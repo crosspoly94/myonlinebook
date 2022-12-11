@@ -15,24 +15,28 @@ kernelspec:
 
 # Mathematical Processing of Data 
 
-Two basic mathematics will be used in this analysis and here gives a brief review of them.
+Two basic mathematical concepts will be used in this analysis and here gives a brief review of them.
 
 ## Inflation Adjusted Gross Income(IAGI)
 
 AGI can be calculated by this equation:
 
+```{math}
+:label: eq_label
+IAGI=GI \times (1+IR)
 
-IAGI=GI$\times$(1+IR)
+IR=((B-A)/A) \times 100
 
-IR=((B-A)/A)$\times$100
+```
 
-
-where,
+```{note}
 - A=Starting cost
 - B=Ending cost
 - GI=Gross income
 - IAGI=Inflation adjusted gross income
 - IR=Inflation rate
+```
+
          
 ## Mean value
 
@@ -40,20 +44,48 @@ The mean is the average of the numbers.It is easy to calculate: add up all the n
 
 $$
 \begin{equation}
-\bar{x}=\frac{x_{1}+x_{2}+\cdots+x_{n}}{n}=\frac{1}{n}\left(\sum_{i=1}^{n}{x_i}\right)
+\bar{x}=\frac{x_{1}+x_{2}+\cdots+x_{n}}{n}
 \end{equation}
-$$
+$$ (my_other_label)
+
+In python, the mean can be calculated by the following codes:
+
+```{code-cell}
+numbers = [1,2,3,4,5]
+
+x = sum(numbers)/len(numbers)
+print("Mean is :", x)
+```
+Also, mean() function can be used to calculate mean/average of a given list of numbers shown as follows:
+
+```{code-cell}
+import statistics
+numbers = [1,2,3,4,5]
+
+x = statistics.mean(numbers)
+print("Mean is :", x)
+```
+
 
 ## Dataset description
 
 The below descripitions were taken directly from the website where the datasets were obtained.
 
-"The Walt Disney Studios is an American film and entertainment studio, and is the Studios Content segment of the Walt Disney Company. Based mainly at the namesake studio lot in Burbank, California, the studio is best known for its multifaceted film divisions. Founded in 1923, it is the fourth-oldest and one of the "Big Five" major film studios"{cite}`McKittrick`.
+```{margin} Did you know?
+The highest grossing income Disney movie in history
+```
 
-This database contains information on the films regarding their genre, actors, directors, and yearly gross income which can be found in different datasets. The Disney dataset is composed of 5 tables, disney_movie_total_gross.csv, disney_revenue_1991-2016.csv, disney_characters.csv, disney_directors.csv, disney_voice_actors.csv. Each table is stored in a .csv file and contains different information about disney movies including genre, actors, directors, yearly gross income, and so forth. I will be using the disney_movie_total_gross table formally described below:
+This database contains information on the films regarding their genre, actors, directors, and yearly gross income which can be found in different datasets. The Disney dataset is composed of 5 tables, disney_movie_total_gross.csv, disney_revenue_1991-2016.csv, disney_characters.csv, disney_directors.csv, disney_voice_actors.csv. Each table is stored in a .csv file and contains different information about disney movies including genre, actors, directors, yearly gross income, and so forth. 
+
+```{note}
+I will be using the disney_movie_total_gross table formally described below:
 
 * **disney_movie_total_gross.csv**
-    * This file contains information on Disney movies, including moive titles, release date, genre, MPAA rating, total_gross, inflation_adjusted_gross.  
+    * This file contains information on Disney movies, including moive titles, release date, genre, MPAA rating, total_gross, inflation_adjusted_gross. 
+
+```
+
+ 
 
 
 

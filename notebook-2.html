@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="The distribution of the top 10 total gross income moives in history" href="notebook-3.html" />
@@ -537,6 +539,7 @@ title="Print to PDF"
 *from 1989 to 1999 → “The Disney Renaissance”
 *from 2000 to 2009 → “Post Renaissance Era”
 *from 2010 to present → “The Revival Era”</p>
+<p>The total grossing income for each group is calculated based on the sum of each year, as expressed as: <span class="math notranslate nohighlight">\(\sum_{i=1}^n X_i\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate plotting data</span>
@@ -635,13 +638,13 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id="altair-viz-d112a93109db41a782d885ac52a58f7e"></div>
+<div id="altair-viz-9f7957f8a5074ba3931a7f185f5918ec"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-d112a93109db41a782d885ac52a58f7e") {
-      outputDiv = document.getElementById("altair-viz-d112a93109db41a782d885ac52a58f7e");
+    if (outputDiv.id !== "altair-viz-9f7957f8a5074ba3931a7f185f5918ec") {
+      outputDiv = document.getElementById("altair-viz-9f7957f8a5074ba3931a7f185f5918ec");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -716,6 +719,7 @@ Name: movie_title, dtype: int64
 </div>
 </div>
 <p>From this table, it can be seen there is a linear relationship between the production and total gross income except for The Golden Age. It can be concluded that the reason for the high gross income for a period of time is mainly due to the high production. However, the porpularity of movie in a specific period will contribute to another reason as The Golden Age shows. To clarify this, the average gross income at different period of time will be given as follows.</p>
+<p>The average gross income can be calculated based mean equation given in math review section, another way of expression is like this: <span class="math notranslate nohighlight">\(\frac{1}{n}\left(\sum_{i=1}^{n}{x_i}\right)\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate the average gross income data</span>
@@ -788,7 +792,12 @@ Name: movie_title, dtype: int64
 </table>
 </div></div></div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use altair to generate a bar plot</span>
 <span class="n">total_gross_year_average_plot</span> <span class="o">=</span> <span class="p">(</span>
@@ -804,15 +813,16 @@ Name: movie_title, dtype: int64
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id="altair-viz-b59b9ba66b494cae97f76978db43b522"></div>
+<div id="altair-viz-7450fdc24fde43f49a0a897d7f7d4b2c"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-b59b9ba66b494cae97f76978db43b522") {
-      outputDiv = document.getElementById("altair-viz-b59b9ba66b494cae97f76978db43b522");
+    if (outputDiv.id !== "altair-viz-7450fdc24fde43f49a0a897d7f7d4b2c") {
+      outputDiv = document.getElementById("altair-viz-7450fdc24fde43f49a0a897d7f7d4b2c");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
