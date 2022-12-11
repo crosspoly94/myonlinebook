@@ -9,6 +9,9 @@ name: walt_disney_logo
 Walt Disney Pictures Logo.
 ```
 
+```{margin} Did you know?
+Walt Disney Studios is "Big Five" major film studios
+```
 ## History
 
 Disney filmmaking has evolved immensely over the past 100 years and has experienced the [7 eras of Disney filmmaking](https://www.dizavenue.com/2015/08/the-7-eras-of-disney-filmmaking.html).
@@ -49,6 +52,12 @@ name: income-2000-2021
 ---
 Box office revenue of leading film studios in the United States and Canada in 2021(in million U.S. dollars).
 ```
+
+```{note}
+Year 2000 is the start of the Post Renaissance Era, in {numref}`income-2000-2021`, you can see a clear increasing trend in revenue of Disney Movies.
+
+```
+
 
 On the other hand, the revenues of different genres of movies from 1995 to 2022 are shown in {numref}`income-genre-1995_2022`. 
 
