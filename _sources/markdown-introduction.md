@@ -65,6 +65,8 @@ Average box office revenue of movies in the United States and Canada from 1995 t
 In this analysis, the gross income of the movies will be analyzed. I will be investigating a question associated with the collection of Disney movies datasets. I am interested in finding out the development history and future trend of the Disney filmmaking. This work will be carried out by examination the total gross income of the movies in different of development stage of Disney Movies and some factors which may affect the gross income. These factors include genre, release year, and production of each year. This is interesting because, as you may know, the Disney movies are deeply loved by people and contribute significantly to the revenue of Disney. Based on this information, suggestions and strategies for the future development of Disney filmmaking will be proposed.
 
 ```{note}
-However, for a truthful comparison, the gross income will be adjusted for inflation according to the equation in the [math section](math_for_data.md).
+However, for a truthful comparison, the gross income will be adjusted for inflation 
+
 ```
 
+For the equation to calculate inflation adjusted gross income as well as some other basic mathematical equations, please refer to the document: {doc}`math-for-data`.

@@ -12,6 +12,7 @@ kernelspec:
   language: python
   name: python3
 ---
+
 # Mathematical Processing of Data 
 
 Two basic mathematics will be used in this analysis and here gives a brief review of them.
