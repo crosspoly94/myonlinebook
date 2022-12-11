@@ -1,0 +1,12 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: markdown-introduction
+- file: math-for-data
+- file: notebook-1
+- file: notebook-2
+- file: notebook-3
+- file: markdown-discussion
