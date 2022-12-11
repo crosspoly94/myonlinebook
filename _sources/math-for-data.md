@@ -21,16 +21,18 @@ Two basic mathematics will be used in this analysis and here gives a brief revie
 
 AGI can be calculated by this equation:
 
-```
-IAGI=GI(1+IR)
-IR=((B-A)/A)\times100
 
-```
+IAGI=GI$\times$(1+IR)
+
+IR=((B-A)/A)$\times$100
+
+
 where,
 - A=Starting cost
 - B=Ending cost
 - GI=Gross income
 - IAGI=Inflation adjusted gross income
+- IR=Inflation rate
          
 ## Mean value
 
