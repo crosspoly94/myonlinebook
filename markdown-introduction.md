@@ -8,9 +8,15 @@ name: walt_disney_logo
 ---
 Walt Disney Pictures Logo.
 ```
+The Walt Disney Studios is an American film and entertainment studio, and is the Studios Content segment of the Walt Disney Company. Based mainly at the namesake studio lot in Burbank, California, the studio is best known for its multifaceted film divisions. Founded in 1923, it is the fourth-oldest and one of the "Big Five" major film studios.
 
-```{margin} Did you watch?
-Snow White and the Seven Dwarfs
+The studio's streak of success continued in the 1930s, culminating with the 1937 release of the first feature-length animated film, Snow White and the Seven Dwarfs, which becomes a huge financial success{cite}`Gabler_2007`.
+
+```{bibliography}
+```
+
+```{margin} Did you know?
+Walt Disney Studios is "Big Five" major film studios
 ```
 
 ## History
