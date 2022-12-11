@@ -3,15 +3,16 @@ Walt Disney Pictures is an American [film production company](https://en.wikiped
 
 ```{figure} ./images/walt_disney_logo.png
 ---
-height: 150px
+height: 300px
 name: walt_disney_logo
 ---
 Walt Disney Pictures Logo.
 ```
 
-```{margin} Did you know?
-Walt Disney Studios is "Big Five" major film studios
+```{margin} Did you watch?
+Snow White and the Seven Dwarfs
 ```
+
 ## History
 
 Disney filmmaking has evolved immensely over the past 100 years and has experienced the [7 eras of Disney filmmaking](https://www.dizavenue.com/2015/08/the-7-eras-of-disney-filmmaking.html).
@@ -24,7 +25,9 @@ Disney filmmaking has evolved immensely over the past 100 years and has experien
 * **Post Renaissance Era - 2000-2009** The “Post Renaissance Era” is marked by no common theme as seen in previous Disney filmmaking eras. What really defines this period of time is Disney Studios trying to find a new method of storytelling, much like that of Pixar’s. 
 * **The Revival Era - 2010-Present** The present era of Disney filmmaking that we are in, the Revival Era” is also being called the Second Disney Renaissance”.
 
+
 In this analysis, the movie production in different eras will be analyzed in relation to the gross income in order to identify the factors affecting the movie incomes. 
+
 
 
 ## Current North American Market of Disney Movies 
@@ -37,17 +40,23 @@ The highest-grossing Disney movies in the United States and Canada of all time a
 
 ```{figure} ./images/highest-income-movie-2022.png
 ---
-height: 150px
+height: 300px
 name: highest-income-movie-2022
 ---
 Highest-grossing Disney movies in the United States and Canada of all time as of September 2022(in million U.S. dollars).
+```
+
+```{note}
+The highest grossing Disney movie of all time worldwide is Avatar (2009), its grossing income(GI) is:
+                     GI $\approx$ 2.9 $\times$ $10^{9}$ US Dollars
+
 ```
 
 Box office revenue of Disney in the U.S. & Canada from 2000 to 2021 is shown in {numref}`income-2000-2021`.
 
 ```{figure} ./images/income-2000-2021.png
 ---
-height: 150px
+height: 300px
 name: income-2000-2021
 ---
 Box office revenue of leading film studios in the United States and Canada in 2021(in million U.S. dollars).
@@ -63,12 +72,17 @@ On the other hand, the revenues of different genres of movies from 1995 to 2022 
 
 ```{figure} ./images/income-genre-1995_2022.png
 ---
-height: 150px
+height: 300px
 name: income-genre-1995_2022
 ---
 Average box office revenue of movies in the United States and Canada from 1995 to 2022, by selected source material(in million U.S. dollars).
 ```
 
+```{note}
+The highest grossing Disney animated film worldwide of all time is The Lion King (1994), its grossing income(GI) is:
+                     GI $\approx$ 1.6 $\times$ $10^{9}$ US Dollars
+
+```
 ## The future development strategy 
 
 In this analysis, the gross income of the movies will be analyzed. I will be investigating a question associated with the collection of Disney movies datasets. I am interested in finding out the development history and future trend of the Disney filmmaking. This work will be carried out by examination the total gross income of the movies in different of development stage of Disney Movies and some factors which may affect the gross income. These factors include genre, release year, and production of each year. This is interesting because, as you may know, the Disney movies are deeply loved by people and contribute significantly to the revenue of Disney. Based on this information, suggestions and strategies for the future development of Disney filmmaking will be proposed.

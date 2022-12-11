@@ -29,12 +29,14 @@ IR=((B-A)/A) \times 100
 
 ```
 
-where,
+```{note}
 - A=Starting cost
 - B=Ending cost
 - GI=Gross income
 - IAGI=Inflation adjusted gross income
 - IR=Inflation rate
+```
+
          
 ## Mean value
 
@@ -55,10 +57,21 @@ The below descripitions were taken directly from the website where the datasets 
 
 "The Walt Disney Studios is an American film and entertainment studio, and is the Studios Content segment of the Walt Disney Company. Based mainly at the namesake studio lot in Burbank, California, the studio is best known for its multifaceted film divisions. Founded in 1923, it is the fourth-oldest and one of the "Big Five" major film studios"{cite}`McKittrick`.
 
-This database contains information on the films regarding their genre, actors, directors, and yearly gross income which can be found in different datasets. The Disney dataset is composed of 5 tables, disney_movie_total_gross.csv, disney_revenue_1991-2016.csv, disney_characters.csv, disney_directors.csv, disney_voice_actors.csv. Each table is stored in a .csv file and contains different information about disney movies including genre, actors, directors, yearly gross income, and so forth. I will be using the disney_movie_total_gross table formally described below:
+```{margin} Did you know?
+Walt Disney Studios is "Big Five" major film studios
+```
+
+This database contains information on the films regarding their genre, actors, directors, and yearly gross income which can be found in different datasets. The Disney dataset is composed of 5 tables, disney_movie_total_gross.csv, disney_revenue_1991-2016.csv, disney_characters.csv, disney_directors.csv, disney_voice_actors.csv. Each table is stored in a .csv file and contains different information about disney movies including genre, actors, directors, yearly gross income, and so forth. 
+
+```{note}
+I will be using the disney_movie_total_gross table formally described below:
 
 * **disney_movie_total_gross.csv**
-    * This file contains information on Disney movies, including moive titles, release date, genre, MPAA rating, total_gross, inflation_adjusted_gross.  
+    * This file contains information on Disney movies, including moive titles, release date, genre, MPAA rating, total_gross, inflation_adjusted_gross. 
+
+```
+
+ 
 
 
 
