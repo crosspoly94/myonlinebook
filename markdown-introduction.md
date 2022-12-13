@@ -25,11 +25,11 @@ Disney filmmaking has evolved immensely over the past 100 years and has experien
 
 * **The Golden Age - 1937-1942** The period beginning with Snow White and the Seven Dwarfs and ending with Bambi is often referred to as the “Golden Age” of Disney filmmaking.
 * **The Wartime Era - 1943-1949** With the arrival of World War II, Disney Studios faced lower budgets and smaller teams of animators available for their films. This era, also known as the “Package Era”, features six films that are comprised of multiple short films within each. They are considered some of the more obscure films in Disney history, and were not wildly popular.
-* **The Silver Age -1950-1959** Also known as the “Restoration Age”, the Silver Age marks Disney’s return to making big-budget full-length films. This era is marked by its beautiful animation with ornate backgrounds with soft colors.
-* **The Bronze Age - 1970-1988** The death of Walt Disney spiraled the Walt Disney Studios into the Bronze Age. Also known as the “Modern Era” this era was a time of decline for Disney.
+* **The Silver Age -1950-1959** Also known as the Restoration Age”, the Silver Age marks Disney’s return to making big-budget full-length films. This era is marked by its beautiful animation with ornate backgrounds with soft colors.
+* **The Bronze Age - 1970-1988** The death of Walt Disney spiraled the Walt Disney Studios into the Bronze Age. Also known as the Modern Era” this era was a time of decline for Disney.
 * **The Disney Renaissance - 1989-1999** Perhaps the most widely agreed upon era in Disney filmmaking, the Disney Renaissance is considered the pinnacle of Disney films. It saw profound success in the box office, with its movies returning to the musical fairy-tale storytelling that Disney was known for.
 * **Post Renaissance Era - 2000-2009** The “Post Renaissance Era” is marked by no common theme as seen in previous Disney filmmaking eras. What really defines this period of time is Disney Studios trying to find a new method of storytelling, much like that of Pixar’s. 
-* **The Revival Era - 2010-Present** The present era of Disney filmmaking that we are in, the Revival Era” is also being called the Second Disney Renaissance”.
+* **The Revival Era - 2010-Present** The present era of Disney filmmaking that we are in, the Revival Era” is also being called the Second Disney Renaissance.
 
 
 In this analysis, the movie production in different eras will be analyzed in relation to the gross income in order to identify the factors affecting the movie incomes. 
